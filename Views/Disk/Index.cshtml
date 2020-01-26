@@ -1,0 +1,16 @@
+﻿@model IEnumerable<CDWebShop.Models.Disk>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Our disks</h2>
+
+<div class="card-deck">
+    @foreach (var item in Model)
+    {
+        @Html.Partial("_DiskCard", item)
+    }
+</div>
+
+
