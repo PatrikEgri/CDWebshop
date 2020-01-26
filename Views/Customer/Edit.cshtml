@@ -1,0 +1,36 @@
+﻿@model CDWebShop.Models.EditCustomerViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Edit customer</h2>
+
+@using (Html.BeginForm("Edit", "Customer", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(c => c.Firstname)
+        @Html.TextBoxFor(c => c.Firstname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Firstname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.Lastname)
+        @Html.TextBoxFor(c => c.Lastname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Lastname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.Email)
+        @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(c => c.Subscriptions)
+        @Html.DropDownListFor(c => c.SubscriptionId, new SelectList(Model.Subscriptions, "Id", "Name"), "-- Choose --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.SubscriptionId)
+    </div>
+
+    <input class="btn btn-success form-control" value="Create" name="submit" type="submit" />
+    @Html.AntiForgeryToken()
+}

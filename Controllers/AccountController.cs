@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CDWebShop.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CDWebShop.Controllers
 {
@@ -156,7 +157,12 @@ namespace CDWebShop.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+                    //var rs = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    //var rm = new RoleManager<IdentityRole>(rs);
+                    //await rm.CreateAsync(new IdentityRole("Admin"));
+                    await UserManager.AddToRoleAsync(user.Id, "Member");
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

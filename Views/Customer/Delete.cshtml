@@ -1,0 +1,15 @@
+﻿@using CDWebShop.Models
+@model Customer
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Are you sure you want to remove @Model.Firstname @Model.Lastname?</h2>
+
+@using (Html.BeginForm("Delete", "Customer", new { }, FormMethod.Post, new { @class = "col-sm-12"}))
+{
+    <input class="btn btn-danger col-sm-6" value="Yes, remove" type="submit" name="submit"/>
+    @Html.ActionLink("Cancel", "Index", "Customer", null, new { @class = "col-sm-6 btn btn-success"})
+    @Html.AntiForgeryToken()
+}
+
